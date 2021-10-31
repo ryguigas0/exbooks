@@ -8,7 +8,7 @@ defmodule Exbooks.Repo.Migrations.CreateBooksTable do
       add :title, :string
       add :price, :float
       add :description, :string
-      add :pictures, {:array, :string}
+      # add :pictures, {:array, :string}
 
       timestamps()
     end

@@ -4,15 +4,18 @@ defmodule Exbooks.Book do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @required_params [:title, :price, :author, :pictures]
+  # @required_params [:title, :price, :author, :pictures]
+  @required_params [:title, :price, :author]
   @params [:description] ++ @required_params
+
+  @derive {Jason.Encoder, only: @params ++ [:id]}
 
   schema "books" do
     field(:title, :string)
     field(:description, :string)
     field(:price, :float)
-    field(:pictures, {:array, :string})
     field :author, :string
+    # field(:pictures, {:array, :string})
     timestamps()
   end
 
@@ -24,6 +27,6 @@ defmodule Exbooks.Book do
     |> validate_length(:author, min: 3)
     |> validate_length(:description, min: 20, max: 300)
     |> validate_number(:price, greater_than_or_equal_to: 0.1)
-    |> validate_length(:pictures, min: 1)
+    # |> validate_length(:pictures, min: 1)
   end
 end

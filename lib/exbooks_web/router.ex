@@ -7,6 +7,7 @@ defmodule ExbooksWeb.Router do
 
   scope "/api", ExbooksWeb do
     pipe_through :api
+    post "/books", BookController, :create
   end
 
   # Enables LiveDashboard only for development
